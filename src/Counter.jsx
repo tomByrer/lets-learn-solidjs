@@ -1,25 +1,26 @@
 import { createSignal, createEffect } from 'solid-js';
 
-const [count, setCount] = createSignal(0);
+//const get = 0, put = 1
+const count$ = createSignal(0);
 
 export default function Counter() {
   function add() {
-    setCount(count() + 1);
+    count$[1](count$[0]() + 1);
   }
 
   function remove() {
-    setCount(count() - 1);
+    count$[1](count$[0]() - 1);
   }
 
   createEffect(() => {
-    console.log(`hello ${count()}`);
+    console.log(`hello ${count$[0]()}`);
   });
 
   return (
     <div>
       <button onClick={add}>Add</button>
       <button onClick={remove}>Remove</button>
-      <p>Current count is {count()}</p>
+      <p>Current count is {count$[0]()}</p>
     </div>
   );
 }
